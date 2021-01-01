@@ -9,8 +9,7 @@ https://data.nasa.gov/resource/gh4g-9sfh.json
 # SQL command to view combined data in SQlite browser:
 SELECT Meteorite.id, Meteorite.name, Meteorite.mass, Class.class, Fall.fall, Geolocation.latitude, Geolocation.longitude, Meteorite.year FROM Meteorite JOIN Class JOIN Geolocation JOIN Fall ON Meteorite.geo_id = Geolocation.id AND Meteorite.class_id = Class.id AND Meteorite.fall_id = Fall.id ORDER BY Meteorite.year
 # Guide
-Once you have Python installed run the programs in the
-following order:
+Once you have Python installed you need to make sure you have a folder named "data" in the main project folder, and another folder named "scource_data" in the "data" folder. Once you have those set up correctly run the programs in the following order:
 
 1. 1_load.py -	You will be prompted to use web data or local data.
       -	For web data you can use one of the links at the top of this
@@ -49,6 +48,9 @@ following order:
 	and id from the original database this data is taken from.
 # API Keys
 Note that an API key is required to properly view the maps. You can get an API key at: https://developers.google.com/maps/documentation/javascript/get-api-key
+
 If you already have an API key you need to change out the link at line 9 in map_markers.html and map_circles.html and instead use: 
-https://maps.googleapis.com/maps/api/js?key=#YOUR_API_KEY&callback=initMap&libraries=&v=weekly
+
+- https://maps.googleapis.com/maps/api/js?key=#YOUR_API_KEY&callback=initMap&libraries=&v=weekly
+
 Remember to change "#YOUR_API_KEY" to your actual key.
