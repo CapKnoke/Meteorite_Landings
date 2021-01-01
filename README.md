@@ -48,8 +48,7 @@ following order:
 	the meteorite, such as name, mass, class, Fell/Found, year
 	and id from the original database this data is taken from.
 # API Keys
-Note that an API key is required to properly view the maps. You can get an
-API key at: https://developers.google.com/maps/documentation/javascript/get-api-key
-If you already have an API key you need to change out the link at line 9 in map_markers.html and map_circles.html
-and instead use: https://maps.googleapis.com/maps/api/js?key=#YOUR_API_KEY&callback=initMap&libraries=&v=weekly
+Note that an API key is required to properly view the maps. You can get an API key at: https://developers.google.com/maps/documentation/javascript/get-api-key
+If you already have an API key you need to change out the link at line 9 in map_markers.html and map_circles.html and instead use: 
+https://maps.googleapis.com/maps/api/js?key=#YOUR_API_KEY&callback=initMap&libraries=&v=weekly
 Remember to change "#YOUR_API_KEY" to your actual key.
