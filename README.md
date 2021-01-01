@@ -18,9 +18,11 @@ Once you have Python installed you need to make sure you have a folder named "da
 	data set of around 45000.
       -	For local files, just press enter when prompted and enter
 	"sample" for sample data or "full" for complete data set. Note that
-  you have to have the local files saved under "#PROJECT_FOLDER/data/scource_data".
+  	you have to have the local files saved under "#PROJECT_FOLDER/data/scource_data".
 	To download theese files, just right click the links under "NASA data on meteorite landings:"
-	and "save link as...", then save them in the correct location.
+	and "save link as...", then save them in the correct location. I've included the sample data
+	in this repository, but if you want to use the complete data set as a local file, you have
+	to download it manually.
       -	If the sqlite database named "db_landings.sqlite" alrady
 	exists, the program will just add the entries it can't find
 	in the existing database. To start from scratch simply delete
