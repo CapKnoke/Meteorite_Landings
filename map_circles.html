@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meteorite Landings - Circles</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js"
+      defer
+    ></script>
+    <script src="data/landings.js"></script>
+    <style type="text/css">
+      #map{
+        height: 100%;
+      }
+      html,
+      body{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      function initMap(){
+        var options = {
+          zoom: 3,
+          center: {lat: 0, lng: 0},
+          mapType: "Terrain",
+        };
+        const map = new google.maps.Map(document.getElementById("map"), options);
+        const welcomeString =
+          '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">Meteorite Landings</h1>'+
+          '<div id="bodyContent">'+
+          '<p>This map was created with data from <a href="https://meteoritical.org/">'+
+          "The Meteoritical Society</a>'s database on meteorite landings.</p>"+
+          '<p>The circles on the map are sized after the <i>recovered</i> '+
+          'mass of the meteorites, so they are not nessecarily indicative '+
+          'of impact energy. The scale is arbitrary and is only '+
+          'ment to visualize the diffrence between them, without some circles '+
+          'being too small, or others too big</p>'+
+          '<p><small>Dataset collected from <a href="https://data.nasa.gov/Space-Science/Meteorite-Landings/gh4g-9sfh">'+
+          'NASA</a></small></p>'+
+          '<p><small>Map created by: <a href="https://github.com/CapKnoke">Sindre Bakken Næsset</a></small></p>'+
+          '</div>'+
+          '</div>';
+        const welcome = new google.maps.InfoWindow({
+          content: welcomeString,
+          position: {lat: 0, lng: 0},
+        });
+        welcome.open(map);
+        for(const item in mData){
+          const mCircle = new google.maps.Circle({
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.4,
+            strokeWeight: 0.5,
+            fillColor: "#FF0000",
+            fillOpacity: 0.2,
+            map,
+            center: mData[item].geo,
+            radius: Math.pow(mData[item].mass_g*100, 1/2)*10,
+          });
+        };
+      }
+    </script>
+  </head>
+  <body onload="initMap()">
+    <div id="map"></div>
+  </body>
+</html>

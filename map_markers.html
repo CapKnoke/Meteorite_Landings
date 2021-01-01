@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meteorite Landings</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js"
+      defer
+    ></script>
+    <script src="data/landings.js"></script>
+    <style type="text/css">
+      #map{
+        height: 100%;
+      }
+      html,
+      body{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      function initMap(){
+        var options = {
+          zoom: 3,
+          center: {lat: 0, lng: 0},
+          mapType: "Terrain",
+        };
+        const map = new google.maps.Map(document.getElementById("map"), options);
+        const welcomeString =
+          '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">Meteorite Landings</h1>'+
+          '<div id="bodyContent">'+
+          '<p>This map was created with data from <a href="https://meteoritical.org/">'+
+          "The Meteoritical Society</a>'s database on meteorite landings. "+
+          "The meteorite id's in the info windows are referencing the meteor's "+
+          'id in their database.</p>'+
+          '<p>If you want to open more than one info window at a time, hold "Ctrl" '+
+          'while clicking the markers you want to view. '+
+          'I recomend you try the <i>satelite</i> map mode. For certain '+
+          'meteorites it is still possible to find the impact crater on the map!</p>'+
+          '<p>Note: Under the <i>fall/found</i> category <i>Fell</i> means the meteorite was '+
+          'discovered as it impacted Earth, while <i>Found</i> means it was '+
+          'discovered and dated at a later time. Also the <i>mass</i> is refering to '+
+          'recovered mass, and is not nessecarily indicative of impact energy</p>'+
+          '<p><small>Dataset collected from <a href="https://data.nasa.gov/Space-Science/Meteorite-Landings/gh4g-9sfh">'+
+          'NASA</a></small></p>'+
+          '<p><small>Map created by: <a href="https://github.com/CapKnoke">Sindre Bakken Næsset</a></small></p>'+
+          '</div>'+
+          '</div>';
+        const welcome = new google.maps.InfoWindow({
+          content: welcomeString,
+          position: {lat: 0, lng: 0},
+        });
+        welcome.open(map);
+        for(const item in mData){
+          const contentString =
+            '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h2 id="firstHeading" class="firstHeading">'+mData[item].name+'</h2>'+
+            '<div id="bodyContent">'+
+            '<p>id: <b>#'+mData[item].id+'</b><br>'+
+            'mass: '+(mData[item].mass_g/1000)+' kg<br>'+
+            'class: '+mData[item].m_class+'<br>'+
+            'year: '+mData[item].year+'<br>'+
+            'fell/found: '+mData[item].fall+'</p>'+
+            '<p style="font-size:80%">Dataset collected<br>from <a href="https://data.nasa.gov/Space-Science/Meteorite-Landings/gh4g-9sfh">'+
+            'NASA</a></p>'+
+            '</div>'+
+            '</div>';
+          const infoWindow = new google.maps.InfoWindow({
+            content: contentString,
+          });
+          const marker = new google.maps.Marker({
+            position: mData[item].geo,
+            map: map,
+            title: mData[item].name,
+          });
+          var openInfoWindows = [];
+          marker.addListener("click", () => {
+            infoWindow.open(map, marker);
+            openInfoWindows.push(infoWindow);
+            if(openInfoWindows.length > 1) {
+              if(event.ctrlKey == false) {
+                var i;
+                var t = openInfoWindows.length;
+                //Known bug: If you ctl click to open several windows,
+                //then normal click one of the already open windows to close all previous windows
+                //it dissapears and you have to click another marker before you can open the previous window again
+                for(i=1; i<t; i++) {
+                  var prevInfoWindow = openInfoWindows[0];
+                  prevInfoWindow.close();
+                  openInfoWindows.shift();
+                };
+              };
+            };
+          });
+        };
+      }
+    </script>
+  </head>
+  <body onload="initMap()">
+    <div id="map"></div>
+  </body>
+</html>
