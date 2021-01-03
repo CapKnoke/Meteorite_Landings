@@ -28,6 +28,6 @@ Note that an API key is required to properly view the maps. You can get an API k
 
 If you already have an API key you need to change out the link at line 9 in map_markers.html and map_circles.html and instead use:
 
-- https://maps.googleapis.com/maps/api/js?key=#YOUR_API_KEY&callback=initMap&libraries=&v=weekly
+- https://maps.googleapis.com/maps/api/js?callback=initMap&key=#YOUR_API_KEY
 
 Remember to change "#YOUR_API_KEY" to your actual key.

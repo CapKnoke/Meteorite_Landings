@@ -6,7 +6,7 @@
     <title>Meteorite Landings</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js"
+      src="https://maps.googleapis.com/maps/api/js?callback=initMap"
       defer
     ></script>
     <script src="data/landings.js"></script>
@@ -104,7 +104,7 @@
       }
     </script>
   </head>
-  <body onload="initMap()">
+  <body>
     <div id="map"></div>
   </body>
 </html>
