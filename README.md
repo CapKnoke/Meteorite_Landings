@@ -20,7 +20,7 @@ Once you have Python installed you need to make sure you have a folder named "da
       - If the sqlite database named "db_landings.sqlite" alrady exists, the program will just add the entries it can't find in the existing database. To start from scratch simply delete "db_landings.sqlite from the data folder.
 
 2. 2_dump.py - You will be asked to filter results by category.
-      - If you want to include all entries from DB, enter "all".
+      - If you want to include all entries from db_landings.sqlite, enter "all".
       - If you want to sort by mass, enter "mass", then enter the minimum and maximum mass to include in grams(!)
       - If you want to sort by year, enter "year", then enter the earliest and the latest year to include.
       - If you want to sort by Fell/Found, enter "fall", then enter whether you want to filter by "Fell" or "Found", "Fell" means the meteorite was detected at the time of impact, while Found means it was found and dated at a later time.
