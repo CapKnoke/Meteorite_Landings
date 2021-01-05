@@ -1,7 +1,11 @@
 # Meteorite-Landings
 This is a file package to collect and visualize data on meteorite landings. To run it you need to have a version of Python 3 installed. To find the latest release of Python go to: https://www.python.org/downloads/
 # NASA data on meteorite landings:
+Full data set (~45 000 entries):
+
 https://data.nasa.gov/api/views/gh4g-9sfh/rows.xml
+
+Sample data set (1 000 entries):
 
 https://data.nasa.gov/resource/gh4g-9sfh.json
 # SQL command to view combined data in SQlite browser:
